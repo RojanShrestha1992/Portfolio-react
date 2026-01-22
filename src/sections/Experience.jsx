@@ -8,7 +8,7 @@ const experiences = [
 
   {
     period: "2021 - 2023",
-    title: "KIST College & SS, KamalPokhari",
+    title: "KIST College & SS, Kamalpokhari",
     description:
       "Graduated from KIST College & SS with a GPA of 3.86, reflecting consistency, discipline, and a strong academic background that supports my growth in technology and development.",
   },

@@ -45,7 +45,7 @@ export const Projects = () => {
           {/* sec heeader  */}
           <div className="text-center mx-auto max-w-3xl mb-16 ">
             <span className="text-secondary-foreground text-sm font-medium tracking-tight animate-fade-in">
-              Featured Work
+              Featured Work 
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 mt-4 animate-fade-in animation-delay-200 text-secondary-foreground ">
               Projects that
