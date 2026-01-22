@@ -9,7 +9,9 @@ import {
   Download,
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
-// import {back} from "@/public/img/hero-bg.jpg"
+import back from "/img/hero-bg.jpg";
+import pfp from "/img/profile-photo-2.png";
+
 const skills = [
   "JavaScript",
   "React",
@@ -23,7 +25,7 @@ const skills = [
   "GitHub",
   "Vercel",
   "Photoshop",
-  "Canva"
+  "Canva",
 ];
 
 export const Hero = () => {
@@ -32,7 +34,7 @@ export const Hero = () => {
       {/* bg */}
       <div className="absolute inset-0">
         <img
-          src="img/hero-bg.jpg"
+          src={back}
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
@@ -83,7 +85,9 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-base text-muted-foreground max-w-lg animate-fade-in animation-delay-500">
-                I’m a web developer who focuses on clarity, performance, and real-world usability. I build fast, visually refined web applications that solve problems instead of adding complexity.
+                I’m a web developer who focuses on clarity, performance, and
+                real-world usability. I build fast, visually refined web
+                applications that solve problems instead of adding complexity.
               </p>
             </div>
             {/* cta  */}
@@ -110,10 +114,13 @@ export const Hero = () => {
               {[
                 { icon: Github, href: "https://github.com/RojanShrestha1992" },
                 { icon: Linkedin, href: "#" },
-                { icon: Instagram, href: "https://www.instagram.com/row.jann/" },
+                {
+                  icon: Instagram,
+                  href: "https://www.instagram.com/row.jann/",
+                },
               ].map((social, idx) => (
                 <a
-                target="_blank"
+                  target="_blank"
                   key={idx}
                   href={social.href}
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
@@ -129,7 +136,7 @@ export const Hero = () => {
               <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-xl animate-pulse"></div>
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="img/profile-photo-2.png"
+                  src={pfp}
                   alt="name"
                   className="w-full h-full aspect-4/5 object-cover rounded-2xl"
                 />
@@ -162,13 +169,15 @@ export const Hero = () => {
           </p>
           <div className="relative overflow-hidden">
             <div className="flex animate-marquee">
-              {[...skills, ...skills,...skills,...skills].map((skill, index) => (
-                <div key={index} className="shrink-0 px-6 py-2">
-                  <span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
-                    {skill}
-                  </span>
-                </div>
-              ))}
+              {[...skills, ...skills, ...skills, ...skills].map(
+                (skill, index) => (
+                  <div key={index} className="shrink-0 px-6 py-2">
+                    <span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
+                      {skill}
+                    </span>
+                  </div>
+                ),
+              )}
             </div>
           </div>
         </div>
