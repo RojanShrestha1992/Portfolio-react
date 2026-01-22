@@ -3,12 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://rojanshrestha1992.github.io/Portfolio-react",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist --nojekyll",
     "lint": "eslint .",
     "preview": "vite preview"
-   
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
