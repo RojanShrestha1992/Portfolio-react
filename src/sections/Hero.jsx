@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 import back from "/img/hero-bg.jpg";
-import pfp from "/img/profile-photo-2.png";
+// import pfp from "/img/profile-photo-2.png";
+import pfp from "/img/profile.png";
 
 const skills = [
   "JavaScript",
@@ -67,7 +68,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Developer React
+                Front End Developer
               </span>
             </div>
 
@@ -113,7 +114,7 @@ export const Hero = () => {
               <span className="text-sm text-muted-foreground">Follow:</span>
               {[
                 { icon: Github, href: "https://github.com/RojanShrestha1992" },
-                { icon: Linkedin, href: "#" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/rojanshrestha1992/" },
                 {
                   icon: Instagram,
                   href: "https://www.instagram.com/row.jann/",

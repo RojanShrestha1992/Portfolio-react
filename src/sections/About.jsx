@@ -51,16 +51,16 @@ export const About = () => {
 
               <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
                 <p>
-                  I enjoy building products where design and engineering work
-                  together seamlessly. My approach is simple: write clean code,
-                  respect the user’s time, and keep things maintainable for the
-                  long run.
+                  I love transforming ideas into interactive, user-friendly
+                  applications and take pride in writing clean, maintainable
+                  code. Beyond coding, I enjoy learning about emerging
+                  technologies, experimenting with design, and sharing knowledge
+                  with others in the tech community.
                 </p>
                 <p>
-                  I’m especially interested in modern frontend architectures, UI
-                  systems, and performance-driven development. Whether working
-                  solo or in a team, I focus on shipping reliable and meaningful
-                  features.
+                  I’m always excited to take on challenging projects and
+                  collaborate with teams that value creativity, innovation, and
+                  continuous growth.
                 </p>
               </div>
 
@@ -97,7 +97,7 @@ export const About = () => {
           </div>
         </div>
       </section>
-      ;
+      
     </>
   );
-};
+}

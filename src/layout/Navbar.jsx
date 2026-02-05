@@ -7,17 +7,17 @@ const navLinks = [
     label: "About",
   },
   {
-    href: "#experience",
-    label: "Experience",
+    href: "#education",
+    label: "Education",
   },
   {
     href: "#projects",
     label: "Projects",
   },
-  {
-    href: "#testimonials",
-    label: "Testimonials",
-  },
+  // {
+  //   href: "#testimonials",
+  //   label: "Testimonials",
+  // },
 ];
 
 export const Navbar = () => {

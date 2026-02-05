@@ -19,13 +19,13 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+1234567890",
-    href: "tel:+1234567890",
+    value: "+977 9823549665",
+    href: "tel:+977 9823549665",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "City, Country",
+    value: "Madhyapur Thimi-6, Bhaktapur",
     href: "https://www.google.com/maps",
   },
 ];

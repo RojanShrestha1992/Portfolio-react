@@ -13,10 +13,10 @@ const experiences = [
       "Graduated from KIST College & SS with a GPA of 3.86, reflecting consistency, discipline, and a strong academic background that supports my growth in technology and development.",
   },
 ];
-export const Experience = () => {
+export const Education = () => {
   return (
     <>
-      <section id="experience" className="py-20 relative overflow-hidden">
+      <section id="education" className="py-20 relative overflow-hidden">
         <div
           className="absolute top-1/2 left-1/4 w-96
        h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
