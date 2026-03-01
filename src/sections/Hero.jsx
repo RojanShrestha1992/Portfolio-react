@@ -68,7 +68,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Front End Developer
+                Full Stack Developer
               </span>
             </div>
 
@@ -152,12 +152,12 @@ export const Hero = () => {
                   </div>
                 </div>
                 {/* stats */}
-                <div className="absolute -top-4 -left-4 glass rounded-xl px-2.5 py-1.5 animate-float animation-delay-500">
+                {/* <div className="absolute -top-4 -left-4 glass rounded-xl px-2.5 py-1.5 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">2+</div>
                   <div className="text-xs text-muted-foreground">
                     Years Experience
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -2,12 +2,28 @@ import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 const projects = [
   {
+    title: "Blog App",
+    description: "A full-stack MERN blogging platform with posts, comments, upvotes, and user profiles, featuring a modern responsive UI.",
+    image: "projects/blog.png",
+    tags: ["MERN"],
+    link: "https://blog-app-mocha-nine.vercel.app/",
+    github: "https://github.com/RojanShrestha1992/blog-app",
+  },
+  {
     title: "E-commerce Website",
     description: "Dynamic e-commerce experience with intuitive navigation and interactive product features",
     image: "projects/e-com.png",
     tags: ["React", "Tailwind CSS"],
     link: "https://e-commerce-wheat-six-13.vercel.app/",
     github: "https://github.com/RojanShrestha1992/e-commerce-app",
+  },
+  {
+    title: "Live Sports Streaming App",
+    description: "A live sports streaming app built with React, providing real-time updates and seamless streaming of various sports events.",
+    image: "projects/live.png",
+    tags: ["React", "Tailwind CSS"],
+    link: "https://live-sports-app-lac.vercel.app/",
+    github: "https://github.com/RojanShrestha1992/live-sports-app"
   },
   {
     title: "Weather App",
@@ -33,6 +49,7 @@ const projects = [
     link: "https://ult-quiz.vercel.app/",
     github: "https://github.com/RojanShrestha1992/UltQuiz",
   },
+  
 ];
 
 export const Projects = () => {
@@ -62,7 +79,7 @@ export const Projects = () => {
           </div>
 
           {/* projects grid  */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
               <div
                 key={idx}
