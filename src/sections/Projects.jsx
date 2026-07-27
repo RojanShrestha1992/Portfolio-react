@@ -2,14 +2,22 @@ import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 const projects = [
   {
+  title: "StudyMitra",
+  description: "A gamified study tracker that transforms studying into an engaging experience with Pomodoro timer, XP, levels, badges, streaks, and global leaderboards.",
+  image: "projects/studymitra.png",
+  tags: ["React", "Node.js", "Express", "MongoDB", "Zustand", "Tailwind CSS"],
+  link: "https://study-tracker-ten-tau.vercel.app/",
+  github: "https://github.com/RojanShrestha1992/study-tracker",
+},
+  {
     title: "Blog App",
     description: "A full-stack MERN blogging platform with posts, comments, upvotes, and user profiles, featuring a modern responsive UI.",
     image: "projects/blog.png",
-    tags: ["MERN"],
+    tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     link: "https://blog-app-mocha-nine.vercel.app/",
     github: "https://github.com/RojanShrestha1992/blog-app",
   },
-  {
+   {
     title: "E-commerce Website",
     description: "Dynamic e-commerce experience with intuitive navigation and interactive product features",
     image: "projects/e-com.png",
@@ -17,7 +25,7 @@ const projects = [
     link: "https://e-commerce-wheat-six-13.vercel.app/",
     github: "https://github.com/RojanShrestha1992/e-commerce-app",
   },
-  {
+   {
     title: "Live Sports Streaming App",
     description: "A live sports streaming app built with React, providing real-time updates and seamless streaming of various sports events.",
     image: "projects/live.png",
@@ -25,6 +33,8 @@ const projects = [
     link: "https://live-sports-app-lac.vercel.app/",
     github: "https://github.com/RojanShrestha1992/live-sports-app"
   },
+ 
+ 
   {
     title: "Weather App",
     description: "Real-time weather insights with location search and dynamic updates.",
@@ -41,14 +51,7 @@ const projects = [
     link: "https://recipe-app-self-six.vercel.app/",
     github: "https://github.com/RojanShrestha1992/Recipe-app",
   },
-  {
-    title: "Quiz App",
-    description: "Challenge your knowledge with a fun and interactive quiz experience.",
-    image: "projects/ult.png",
-    tags: ["React"],
-    link: "https://ult-quiz.vercel.app/",
-    github: "https://github.com/RojanShrestha1992/UltQuiz",
-  },
+  
   
 ];
 
