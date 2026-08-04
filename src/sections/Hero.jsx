@@ -103,10 +103,16 @@ export const Hero = () => {
               </a>
 
               {/* animated svg btn */}
-              <AnimatedBorderButton>
-                <Download className="w-5 h-5" />
-                Download CV
-              </AnimatedBorderButton>
+              <a
+                href="/cv/Rojan_Shrestha_CV"
+                download="Rojan_Shrestha_CV"
+                className="inline-flex"
+              >
+                <AnimatedBorderButton>
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </AnimatedBorderButton>
+              </a>
             </div>
 
             {/* social  */}
@@ -114,7 +120,10 @@ export const Hero = () => {
               <span className="text-sm text-muted-foreground">Follow:</span>
               {[
                 { icon: Github, href: "https://github.com/RojanShrestha1992" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/rojanshrestha1992/" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/rojanshrestha1992/",
+                },
                 {
                   icon: Instagram,
                   href: "https://www.instagram.com/row.jann/",
