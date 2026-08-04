@@ -104,8 +104,8 @@ export const Hero = () => {
 
               {/* animated svg btn */}
               <a
-                href="/cv/Rojan_Shrestha_CV"
-                download="Rojan_Shrestha_CV"
+                href="/cv/Rojan_Shrestha_CV.pdf"
+                download="Rojan_Shrestha_CV.pdf"
                 className="inline-flex"
               >
                 <AnimatedBorderButton>
