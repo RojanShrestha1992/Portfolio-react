@@ -1,15 +1,12 @@
-/* eslint-disable react-hooks/purity */
 import { Button } from "@/components/Button";
 import {
   ArrowRight,
   Github,
   Linkedin,
   Instagram,
-  ChevronDown,
   Download,
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
-import back from "/img/hero-bg.jpg";
 // import pfp from "/img/profile-photo-2.png";
 import pfp from "/img/profile.png";
 
@@ -31,34 +28,18 @@ const skills = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* bg */}
-      <div className="absolute inset-0">
-        <img
-          src={back}
-          alt="Hero image"
-          className="w-full h-full object-cover opacity-40"
-        />
-      </div>
-      <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
-
-      {/* green dots */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map(() => (
-          <div
-            className="absolute w-1.5 h-1.5 rounded-full opacity-60"
-            style={{
-              backgroundColor: "#20b2A6",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${
-                15 + Math.random() * 20
-              }s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          ></div>
-        ))}
-      </div>
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
+      {/* subtle warm lighting */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 15% 15%, rgba(199,107,74,0.10), transparent 32%), radial-gradient(circle at 85% 10%, rgba(217,154,61,0.08), transparent 28%), var(--color-background)",
+        }}
+      />
 
       {/* content  */}
       <div className="container mx-auto px-6 pt-20 pb-12 relative z-10">
@@ -66,7 +47,7 @@ export const Hero = () => {
           {/* left col  text */}
           <div className="space-y-8">
             <div className="animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soft-accent border border-[#f0d7cb] text-sm font-medium text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 Full Stack Developer
               </span>
@@ -75,20 +56,19 @@ export const Hero = () => {
             {/* headline */}
 
             <div className="space-y-0.5">
-              <h1 className="text-3xl md:text-5xl lg:text-4xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting{" "}
-                <span className="text-primary glow-text">Innovative</span>
+              <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] animate-fade-in animation-delay-100">
+                Crafting <span className="text-primary">Innovative</span>
                 <br />
-                and Dynamic
+                and <span className="text-primary">Dynamic</span>
                 <br />
-                <span className="text-serif italic font-normal text-white">
+                <span className="font-serif italic font-normal text-secondary-foreground">
                   Web Experiences with React
                 </span>
               </h1>
               <p className="text-base text-muted-foreground max-w-lg animate-fade-in animation-delay-500">
-                I’m a web developer who focuses on clarity, performance, and
-                real-world usability. I build fast, visually refined web
-                applications that solve problems instead of adding complexity.
+                I build scalable web applications and RESTful APIs with modern
+                technologies. Currently focused on backend development and
+                system design.
               </p>
             </div>
             {/* cta  */}
@@ -133,9 +113,10 @@ export const Hero = () => {
                   target="_blank"
                   key={idx}
                   href={social.href}
-                  className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  aria-label={social.icon.name}
+                  className="p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  {<social.icon className="w-5 h-5" />}
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -143,30 +124,23 @@ export const Hero = () => {
           {/* right col img  */}
           <div className="relative animate-fade-in animation-delay-300">
             <div className="relative max-w-xs mx-auto">
-              <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-xl animate-pulse"></div>
-              <div className="relative glass rounded-3xl p-2 glow-border">
+              <div className="absolute inset-0 rounded-3xl bg-primary/10 blur-2xl" />
+              <div className="relative bg-surface border border-border rounded-3xl p-2 shadow-[0_16px_40px_rgba(73,58,45,0.10)]">
                 <img
                   src={pfp}
-                  alt="name"
+                  alt="Rojan Shrestha"
                   className="w-full h-full aspect-4/5 object-cover rounded-2xl"
                 />
 
                 {/* floating badge */}
                 <div className="absolute -bottom-4 -right-4 glass rounded-xl px-2.5 py-1.5 animate-float">
                   <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    <div className="w-3 h-3 bg-sage rounded-full animate-pulse" />
                     <span className="text-sm font-medium">
                       Available for work
                     </span>
                   </div>
                 </div>
-                {/* stats */}
-                {/* <div className="absolute -top-4 -left-4 glass rounded-xl px-2.5 py-1.5 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-primary">2+</div>
-                  <div className="text-xs text-muted-foreground">
-                    Years Experience
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
@@ -189,6 +163,7 @@ export const Hero = () => {
                 ),
               )}
             </div>
+            4
           </div>
         </div>
       </div>

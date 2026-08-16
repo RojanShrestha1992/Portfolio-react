@@ -6,6 +6,8 @@ import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
 import { Education } from "./sections/Education";
+import { BackToTop } from "./components/BackToTop";
+import { Reveal } from "./components/Reveal";
 
 function App() {
   return (
@@ -14,14 +16,23 @@ function App() {
         <Navbar />
         <main>
           <Hero />
-          <About />
-          <Projects />
-          <Education />
-          {/* <Testimonials /> */} {/* not needed for now */}
-          <Contact />
+          <Reveal>
+            <About />
+          </Reveal>
+          <Reveal>
+            <Projects />
+          </Reveal>
+          <Reveal>
+            <Education />
+          </Reveal>
+          {/* <Reveal><Testimonials /></Reveal>  not needed for now */}
+          <Reveal>
+            <Contact />
+          </Reveal>
         </main>
         <Footer />
       </div>
+      <BackToTop />
     </>
   );
 }

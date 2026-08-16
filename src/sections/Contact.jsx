@@ -92,12 +92,12 @@ export const Contact = () => {
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
+            <span className="text-secondary-foreground text-sm font-semibold tracking-wider uppercase animate-fade-in">
               Get In Touch
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-foreground">
               Let's build{" "}
-              <span className="font-serif italic font-normal text-white">
+              <span className="font-serif italic font-normal text-primary">
                 something great.
               </span>
             </h2>
@@ -110,7 +110,7 @@ export const Contact = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
+            <div className="card p-8 animate-fade-in animation-delay-300">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
@@ -122,7 +122,7 @@ export const Contact = () => {
                   <input
                     id="name"
                     type="text"
-                    className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                    className="w-full px-4 py-3 bg-soft-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                     required
                     placeholder="Your name..."
                     value={formData.name}
@@ -141,7 +141,7 @@ export const Contact = () => {
                   <input
                     id="email"
                     type="email"
-                    className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                    className="w-full px-4 py-3 bg-soft-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                     required
                     placeholder="email@example.com"
                     value={formData.email}
@@ -161,7 +161,7 @@ export const Contact = () => {
                     rows={5}
                     id="message"
                     type="text"
-                    className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 bg-soft-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
                     required
                     placeholder="Your message..."
                     value={formData.message}
@@ -191,8 +191,8 @@ export const Contact = () => {
                     className={`flex items-center gap-3 p-4 rounded-xl
                         ${
                           submitStatus.type === "success"
-                            ? "bg-green-500/10 border border-green-500/20 text-primary"
-                            : "bg-red-500/10 border border-red-500/20 text-red-500"
+                            ? "bg-sage/10 border border-sage/30 text-sage"
+                            : "bg-red-500/10 border border-red-500/30 text-red-500"
                         }
                         `}
                   >
@@ -208,7 +208,7 @@ export const Contact = () => {
             </div>
             {/* contacct me inf */}
             <div className="space-y-6 animate-fade-in animation-delay-400">
-              <div className="glass rounded-3xl p-8">
+              <div className="card p-8">
                 <h3 className="text-xl font-semibold mb-6">
                   Contact Information
                 </h3>
@@ -217,7 +217,7 @@ export const Contact = () => {
                     <a
                       key={i}
                       href={item.href}
-                      className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
+                      className="flex items-center gap-4 p-4 rounded-xl hover:bg-soft-surface transition-colors group"
                     >
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <item.icon className="w-5 h-5 text-primary" />
@@ -233,9 +233,9 @@ export const Contact = () => {
                 </div>
               </div>
 
-              <div className="glass rounded-3xl p-8 border border-primary/30">
+              <div className="card p-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                  <span className="w-3 h-3 bg-sage rounded-full animate-pulse" />
                   <span className="font-medium">Currently Available</span>
                 </div>
                 <p className="text-muted-foreground text-sm">

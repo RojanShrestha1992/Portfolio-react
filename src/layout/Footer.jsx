@@ -1,10 +1,21 @@
-
 import { Github, Linkedin, Instagram, Heart } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/RojanShrestha1992", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/rojanshrestha1992/", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/row.jann/", label: "Instagram" },
+  {
+    icon: Github,
+    href: "https://github.com/RojanShrestha1992",
+    label: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/rojanshrestha1992/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/row.jann/",
+    label: "Instagram",
+  },
 ];
 
 const footerLinks = [
@@ -23,7 +34,10 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight">
+            <a
+              href="#"
+              className="text-2xl font-extrabold tracking-tight font-display"
+            >
               RS<span className="text-primary">.</span>
             </a>
             <p className="text-sm text-muted-foreground mt-2">
@@ -37,7 +51,7 @@ export const Footer = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </a>
@@ -48,11 +62,11 @@ export const Footer = () => {
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
-              target="_blank"
+                target="_blank"
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
+                className="p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all"
               >
                 <social.icon className="w-5 h-5" />
               </a>

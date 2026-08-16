@@ -1,43 +1,58 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+
+// Tags rendered with a warmer terracotta tint (backend technologies)
+const backendTags = [
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "SQL",
+  "MySQL",
+  "PostgreSQL",
+];
+
 const projects = [
   {
-  title: "StudyMitra",
-  description: "A gamified study tracker that transforms studying into an engaging experience with Pomodoro timer, XP, levels, badges, streaks, and global leaderboards.",
-  image: "projects/studymitra.png",
-  tags: ["React", "Node.js", "Express", "MongoDB", "Zustand", "Tailwind CSS"],
-  link: "https://study-tracker-ten-tau.vercel.app/",
-  github: "https://github.com/RojanShrestha1992/study-tracker",
-},
+    title: "StudyMitra",
+    description:
+      "A gamified study tracker that transforms studying into an engaging experience with Pomodoro timer, XP, levels, badges, streaks, and global leaderboards.",
+    image: "projects/studymitra.png",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Zustand", "Tailwind CSS"],
+    link: "https://study-tracker-ten-tau.vercel.app/",
+    github: "https://github.com/RojanShrestha1992/study-tracker",
+  },
   {
     title: "Blog App",
-    description: "A full-stack MERN blogging platform with posts, comments, upvotes, and user profiles, featuring a modern responsive UI.",
+    description:
+      "A full-stack MERN blogging platform with posts, comments, upvotes, and user profiles, featuring a modern responsive UI.",
     image: "projects/blog.png",
     tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     link: "https://blog-app-mocha-nine.vercel.app/",
     github: "https://github.com/RojanShrestha1992/blog-app",
   },
-   {
+  {
     title: "E-commerce Website",
-    description: "Dynamic e-commerce experience with intuitive navigation and interactive product features",
+    description:
+      "Dynamic e-commerce experience with intuitive navigation and interactive product features",
     image: "projects/e-com.png",
     tags: ["React", "Tailwind CSS"],
     link: "https://e-commerce-wheat-six-13.vercel.app/",
     github: "https://github.com/RojanShrestha1992/e-commerce-app",
   },
-   {
+  {
     title: "Live Sports Streaming App",
-    description: "A live sports streaming app built with React, providing real-time updates and seamless streaming of various sports events.",
+    description:
+      "A live sports streaming app built with React, providing real-time updates and seamless streaming of various sports events.",
     image: "projects/live.png",
     tags: ["React", "Tailwind CSS"],
     link: "https://live-sports-app-lac.vercel.app/",
-    github: "https://github.com/RojanShrestha1992/live-sports-app"
+    github: "https://github.com/RojanShrestha1992/live-sports-app",
   },
- 
- 
+
   {
     title: "Weather App",
-    description: "Real-time weather insights with location search and dynamic updates.",
+    description:
+      "Real-time weather insights with location search and dynamic updates.",
     image: "projects/weather.png",
     tags: ["React", "CSS"],
     link: "https://weather-app-react-seven-sigma.vercel.app/",
@@ -45,14 +60,13 @@ const projects = [
   },
   {
     title: "Recipe App",
-    description: "Discover and explore delicious recipes with an intuitive search and clean interface.",
+    description:
+      "Discover and explore delicious recipes with an intuitive search and clean interface.",
     image: "projects/recipe.png",
     tags: ["React", "Tailwind CSS"],
     link: "https://recipe-app-self-six.vercel.app/",
     github: "https://github.com/RojanShrestha1992/Recipe-app",
   },
-  
-  
 ];
 
 export const Projects = () => {
@@ -64,12 +78,12 @@ export const Projects = () => {
         <div className="container mx-auto px-6 relative z-10">
           {/* sec heeader  */}
           <div className="text-center mx-auto max-w-3xl mb-16 ">
-            <span className="text-secondary-foreground text-sm font-medium tracking-tight animate-fade-in">
-              Featured Work 
+            <span className="text-secondary-foreground text-sm font-semibold tracking-wider uppercase animate-fade-in">
+              Featured Work
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 mt-4 animate-fade-in animation-delay-200 text-secondary-foreground ">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 mt-4 animate-fade-in animation-delay-200 text-foreground">
               Projects that
-              <span className="font-serif italic font-normal text-white">
+              <span className="font-serif italic font-normal text-primary">
                 {" "}
                 make an impact.
               </span>
@@ -86,7 +100,7 @@ export const Projects = () => {
             {projects.map((project, idx) => (
               <div
                 key={idx}
-                className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
+                className="group card card-hover rounded-2xl overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${(idx + 1) * 100}ms` }}
               >
                 {/* image */}
@@ -96,7 +110,13 @@ export const Projects = () => {
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-card via-card/50 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-linear-to-t from-surface/90 via-surface/30 to-transparent" />
+
+                  {/* live badge */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-surface/90 backdrop-blur px-2.5 py-1 border border-border">
+                    <span className="w-1.5 h-1.5 bg-sage rounded-full" />
+                    <span className="text-xs font-medium text-sage">Live</span>
+                  </div>
 
                   {/* overlay link  */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -111,7 +131,6 @@ export const Projects = () => {
                     <a
                       href={project.github}
                       target="_black"
-
                       className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
                     >
                       <Github className="w-5 h-5" />
@@ -124,14 +143,21 @@ export const Projects = () => {
                     <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary hroup-hover:translate-x-1 group-hover:-translate-y-1 transiton-all" />
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   </div>
                   <p className="text-muted-foreground text-sm">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIdx) => (
-                      <span key={tagIdx} className="px-4 py-1.5 rounded-full bg-surface text-xs font-medium border border-border/50 text-muted-foreground hover:border-primary/50 hover:text-primary transition-all duration-300">
+                      <span
+                        key={tagIdx}
+                        className={`px-4 py-1.5 rounded-full text-xs font-medium border transition-all duration-300 ${
+                          backendTags.includes(tag)
+                            ? "tag hover:border-primary/40 hover:text-primary"
+                            : "tag hover:border-primary/40 hover:text-primary"
+                        }`}
+                      >
                         {tag}
                       </span>
                     ))}
@@ -141,15 +167,15 @@ export const Projects = () => {
             ))}
           </div>
 
-           {/* view all cta  */}
-           <div  className="text-center mt-12 animate-fade-in animation-delay-500">
+          {/* view all cta  */}
+          <div className="text-center mt-12 animate-fade-in animation-delay-500">
             <a target="_blank" href="https://github.com/RojanShrestha1992">
-           <AnimatedBorderButton >
-            View All Projects
-            <ArrowUpRight className="w-5 h-5" />
-             </AnimatedBorderButton>
-             </a>
-             </div>
+              <AnimatedBorderButton>
+                View All Projects
+                <ArrowUpRight className="w-5 h-5" />
+              </AnimatedBorderButton>
+            </a>
+          </div>
         </div>
       </section>
     </>
