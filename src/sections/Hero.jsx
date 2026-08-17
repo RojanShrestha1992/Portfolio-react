@@ -9,6 +9,12 @@ import {
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 // import pfp from "/img/profile-photo-2.png";
 import pfp from "/img/profile.png";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const skills = [
   "JavaScript",
@@ -27,8 +33,81 @@ const skills = [
 ];
 
 export const Hero = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      // --- load-in timeline ---
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(
+        ".hero-badge",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.7 },
+      )
+        .fromTo(
+          ".hero-title",
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          "-=0.35",
+        )
+        .fromTo(
+          ".hero-sub",
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.7 },
+          "-=0.45",
+        )
+        .fromTo(
+          ".hero-cta > *",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 },
+          "-=0.4",
+        )
+        .fromTo(
+          ".hero-social",
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          "-=0.35",
+        )
+        .fromTo(
+          ".hero-photo",
+          { opacity: 0, y: 40, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: "back.out(1.3)",
+          },
+          "-=0.5",
+        )
+        .fromTo(
+          ".hero-skills",
+          { opacity: 0 },
+          { opacity: 1, duration: 0.8 },
+          "-=0.4",
+        );
+
+      // --- subtle photo parallax on scroll ---
+      gsap.to(".hero-photo-inner", {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
@@ -46,7 +125,7 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* left col  text */}
           <div className="space-y-8">
-            <div className="animate-fade-in">
+            <div className="hero-badge">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soft-accent border border-[#f0d7cb] text-sm font-medium text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 Full Stack Developer
@@ -56,7 +135,7 @@ export const Hero = () => {
             {/* headline */}
 
             <div className="space-y-0.5">
-              <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] animate-fade-in animation-delay-100">
+              <h1 className="hero-title text-4xl md:text-5xl font-bold leading-[1.1]">
                 Crafting <span className="text-primary">Innovative</span>
                 <br />
                 and <span className="text-primary">Dynamic</span>
@@ -65,19 +144,17 @@ export const Hero = () => {
                   Web Experiences with React
                 </span>
               </h1>
-              <p className="text-base text-muted-foreground max-w-lg animate-fade-in animation-delay-500">
-                I build scalable web applications and RESTful APIs with modern
-                technologies. Currently focused on backend development and
-                system design.
+              <p className="hero-sub text-base text-muted-foreground max-w-lg">
+                I'm Rojan Shrestha, a developer focused on building reliable
+                backend systems and RESTful APIs. I enjoy designing databases,
+                developing secure APIs, and turning real-world problems into
+                practical software solutions.
               </p>
             </div>
             {/* cta  */}
-            <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-600">
+            <div className="hero-cta flex flex-wrap gap-4">
               <a href="#contact">
-                <Button
-                  size="lg"
-                  className="animate-fade-in animation-delay-700"
-                >
+                <Button size="lg">
                   Contact Me <ArrowRight className="w-5 h-5" />
                 </Button>
               </a>
@@ -96,7 +173,7 @@ export const Hero = () => {
             </div>
 
             {/* social  */}
-            <div className="flex gap-4 items-center animate-fade-in animation-delay-100">
+            <div className="hero-social flex gap-4 items-center">
               <span className="text-sm text-muted-foreground">Follow:</span>
               {[
                 { icon: Github, href: "https://github.com/RojanShrestha1992" },
@@ -122,8 +199,8 @@ export const Hero = () => {
             </div>
           </div>
           {/* right col img  */}
-          <div className="relative animate-fade-in animation-delay-300">
-            <div className="relative max-w-xs mx-auto">
+          <div className="hero-photo relative">
+            <div className="hero-photo-inner relative max-w-xs mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-primary/10 blur-2xl" />
               <div className="relative bg-surface border border-border rounded-3xl p-2 shadow-[0_16px_40px_rgba(73,58,45,0.10)]">
                 <img
@@ -147,12 +224,12 @@ export const Hero = () => {
         </div>
 
         {/* skills  */}
-        <div className="mt-4 animate-fade-in animation-delay-600">
+        <div className="hero-skills mt-4">
           <p className="text-sm text-muted-foreground mb-1 text-center">
             Things I know
           </p>
           <div className="relative overflow-hidden">
-            <div className="flex animate-marquee">
+            <div className="flex animate-marquee hover:[animation-play-state:paused]">
               {[...skills, ...skills, ...skills, ...skills].map(
                 (skill, index) => (
                   <div key={index} className="shrink-0 px-6 py-2">
@@ -163,7 +240,6 @@ export const Hero = () => {
                 ),
               )}
             </div>
-            4
           </div>
         </div>
       </div>

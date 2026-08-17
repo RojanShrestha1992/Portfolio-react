@@ -8,17 +8,16 @@ import { Footer } from "./layout/Footer";
 import { Education } from "./sections/Education";
 import { BackToTop } from "./components/BackToTop";
 import { Reveal } from "./components/Reveal";
+import { ScrollProgress } from "./components/ScrollProgress";
 
 function App() {
   return (
     <>
-      <div className="min-h-screen overflow-x-hidden">
+      <div className="min-h-screen overflow-x-clip">
         <Navbar />
         <main>
           <Hero />
-          <Reveal>
-            <About />
-          </Reveal>
+          <About />
           <Reveal>
             <Projects />
           </Reveal>
@@ -26,13 +25,12 @@ function App() {
             <Education />
           </Reveal>
           {/* <Reveal><Testimonials /></Reveal>  not needed for now */}
-          <Reveal>
-            <Contact />
-          </Reveal>
+          <Contact />
         </main>
         <Footer />
       </div>
       <BackToTop />
+      <ScrollProgress />
     </>
   );
 }

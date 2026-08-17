@@ -1,3 +1,10 @@
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 const experiences = [
   {
     period: "2023 - Present",
@@ -14,10 +21,65 @@ const experiences = [
   },
 ];
 export const Education = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      // --- timeline line draws itself as you scroll ---
+      gsap.fromTo(
+        ".edu-line",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          transformOrigin: "top center",
+          scrollTrigger: {
+            trigger: ".edu-timeline",
+            start: "top 72%",
+            end: "bottom 55%",
+            scrub: true,
+          },
+        },
+      );
+
+      // --- cards slide in alternately + dots pop ---
+      gsap.utils.toArray(".edu-card").forEach((card, idx) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, x: idx % 2 === 0 ? -60 : 60 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 85%" },
+          },
+        );
+      });
+
+      gsap.utils.toArray(".edu-dot").forEach((dot) => {
+        gsap.fromTo(
+          dot,
+          { scale: 0 },
+          {
+            scale: 1,
+            duration: 0.4,
+            ease: "back.out(2.2)",
+            scrollTrigger: { trigger: dot, start: "top 82%" },
+          },
+        );
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <>
       <section
         id="education"
+        ref={sectionRef}
         className="py-24 bg-[#fbf8f2] relative overflow-hidden"
       >
         <div
@@ -43,19 +105,15 @@ export const Education = () => {
           </div>
 
           {/* timeline  */}
-          <div className="relative">
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary/60 via-primary/25 to-transparent md:-translate-x-1/2" />
+          <div className="edu-timeline relative">
+            <div className="edu-line absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary/60 via-primary/25 to-transparent md:-translate-x-1/2" />
 
             {/* experience  */}
             <div className="space-y-12">
               {experiences.map((exp, idx) => (
-                <div
-                  key={idx}
-                  className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                  style={{ animationDelay: `${(idx + 1) * 100}ms` }}
-                >
+                <div key={idx} className="relative grid md:grid-cols-2 gap-8">
                   {/* timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 top-0 h-3 w-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
+                  <div className="edu-dot absolute left-0 md:left-1/2 top-0 h-3 w-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
                     {exp.current && (
                       <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
                     )}
@@ -71,7 +129,7 @@ export const Education = () => {
                       }
                     `}
                   >
-                    <div className="card card-hover p-6">
+                    <div className="edu-card card card-hover p-6">
                       <span className="text-sm text-primary font-semibold">
                         {exp.period}
                       </span>

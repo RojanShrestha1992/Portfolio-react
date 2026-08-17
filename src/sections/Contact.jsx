@@ -7,8 +7,13 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 const contactInfo = [
   {
     icon: Mail,
@@ -31,6 +36,50 @@ const contactInfo = [
 ];
 
 export const Contact = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: "top 72%" },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.fromTo(
+        ".contact-eyebrow",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 },
+      )
+        .fromTo(
+          ".contact-heading",
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.7 },
+          "-=0.3",
+        )
+        .fromTo(
+          ".contact-sub",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          "-=0.4",
+        )
+        .fromTo(
+          ".contact-form",
+          { opacity: 0, x: -50 },
+          { opacity: 1, x: 0, duration: 0.8 },
+          "-=0.3",
+        )
+        .fromTo(
+          ".contact-info",
+          { opacity: 0, x: 50 },
+          { opacity: 1, x: 0, duration: 0.8 },
+          "-=0.7",
+        );
+    },
+    { scope: sectionRef },
+  );
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -83,7 +132,11 @@ export const Contact = () => {
 
   return (
     <>
-      <section id="contact" className="py-20 relative overflow-hidden">
+      <section
+        id="contact"
+        ref={sectionRef}
+        className="py-20 relative overflow-hidden"
+      >
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
@@ -92,16 +145,16 @@ export const Contact = () => {
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-secondary-foreground text-sm font-semibold tracking-wider uppercase animate-fade-in">
+            <span className="contact-eyebrow text-secondary-foreground text-sm font-semibold tracking-wider uppercase">
               Get In Touch
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-foreground">
+            <h2 className="contact-heading text-4xl md:text-5xl font-bold mt-4 mb-6 text-foreground">
               Let's build{" "}
               <span className="font-serif italic font-normal text-primary">
                 something great.
               </span>
             </h2>
-            <p className="text-muted-foreground animate-fade-in animation-delay-200">
+            <p className="contact-sub text-muted-foreground">
               I’m always open to connecting with like-minded professionals,
               collaborators, or anyone interested in my work. Whether you have a
               question, a project idea, or just want to say hello, feel free to
@@ -110,7 +163,7 @@ export const Contact = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="card p-8 animate-fade-in animation-delay-300">
+            <div className="contact-form card p-8">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
@@ -207,7 +260,7 @@ export const Contact = () => {
               </form>
             </div>
             {/* contacct me inf */}
-            <div className="space-y-6 animate-fade-in animation-delay-400">
+            <div className="contact-info space-y-6">
               <div className="card p-8">
                 <h3 className="text-xl font-semibold mb-6">
                   Contact Information

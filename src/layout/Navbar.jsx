@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 const navLinks = [
   {
@@ -25,10 +26,45 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const headerRef = useRef(null);
+  const mobileOpenRef = useRef(false);
+
+  // keep ref in sync so the GSAP callback can read the latest state
+  useEffect(() => {
+    mobileOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
     handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smart hide/show: hide while scrolling down, reveal when scrolling up
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (mobileOpenRef.current) {
+        gsap.to(headerRef.current, {
+          yPercent: 0,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+        return;
+      }
+      const goingDown = y > lastY;
+      lastY = y;
+      gsap.to(headerRef.current, {
+        yPercent: goingDown && y > 160 ? -110 : 0,
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -59,7 +95,8 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 outline-none border-none transition-all duration-500 ${
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 outline-none border-none transition-[padding,background-color,border-color] duration-500 ${
         isScrolled ? "glass-strong py-3" : "bg-transparent py-5"
       }`}
     >

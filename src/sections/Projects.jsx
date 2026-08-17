@@ -1,5 +1,11 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 // Tags rendered with a warmer terracotta tint (backend technologies)
 const backendTags = [
@@ -70,9 +76,58 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      // --- card stagger reveal on scroll ---
+      gsap.utils.toArray(".project-card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 88%" },
+          },
+        );
+      });
+
+      // --- image parallax (scrubbed) ---
+      gsap.utils.toArray(".project-img-wrap").forEach((wrap) => {
+        const img = wrap.querySelector("img");
+        if (!img) return;
+        gsap.fromTo(
+          img,
+          { yPercent: -10, scale: 1.2 },
+          {
+            yPercent: 10,
+            scale: 1.2,
+            ease: "none",
+            scrollTrigger: {
+              trigger: wrap,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          },
+        );
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
     <>
-      <section id="projects" className="py-20 relative overflow-hidden">
+      <section
+        id="projects"
+        ref={sectionRef}
+        className="py-20 relative overflow-hidden"
+      >
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
         <div className="container mx-auto px-6 relative z-10">
@@ -100,15 +155,14 @@ export const Projects = () => {
             {projects.map((project, idx) => (
               <div
                 key={idx}
-                className="group card card-hover rounded-2xl overflow-hidden animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+                className="project-card group card card-hover rounded-2xl overflow-hidden"
               >
                 {/* image */}
-                <div className="relative overflow-hidden aspect-video">
+                <div className="project-img-wrap relative overflow-hidden aspect-video">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover group-hover:brightness-110 transition-[filter] duration-500"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-surface/90 via-surface/30 to-transparent" />
 
@@ -154,7 +208,7 @@ export const Projects = () => {
                         key={tagIdx}
                         className={`px-4 py-1.5 rounded-full text-xs font-medium border transition-all duration-300 ${
                           backendTags.includes(tag)
-                            ? "tag hover:border-primary/40 hover:text-primary"
+                            ? "tag-backend hover:border-primary/40"
                             : "tag hover:border-primary/40 hover:text-primary"
                         }`}
                       >
