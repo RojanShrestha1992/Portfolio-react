@@ -230,12 +230,12 @@ export const Hero = () => {
                   href: "https://www.instagram.com/row.jann/",
                 },
               ].map((social, idx) => (
-                <MagneticButton key={idx}>
+                <MagneticButton key={idx} className="rounded-full">
                   <a
                     target="_blank"
                     href={social.href}
                     aria-label={social.icon.name}
-                    className="p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
                   >
                     <social.icon className="w-5 h-5" />
                   </a>
