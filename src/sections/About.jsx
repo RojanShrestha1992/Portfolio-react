@@ -122,8 +122,41 @@ export const About = () => {
             {/* right col */}
             <div className="grid sm:grid-cols-2 gap-6">
               {highlights.map((item, idx) => (
-                <div key={idx} className="about-card card card-hover p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
+                <div
+                  key={idx}
+                  className="about-card card card-hover p-6"
+                  onMouseEnter={(e) => {
+                    const icon = e.currentTarget.querySelector("svg");
+                    gsap.fromTo(
+                      icon,
+                      { scale: 1, rotate: 0 },
+                      {
+                        scale: 1.2,
+                        rotate: -8,
+                        duration: 0.3,
+                        ease: "back.out(2)",
+                      },
+                    );
+                    gsap.to(e.currentTarget.querySelector(".about-icon-wrap"), {
+                      backgroundColor: "rgba(199,107,74,0.18)",
+                      duration: 0.3,
+                    });
+                  }}
+                  onMouseLeave={(e) => {
+                    const icon = e.currentTarget.querySelector("svg");
+                    gsap.to(icon, {
+                      scale: 1,
+                      rotate: 0,
+                      duration: 0.4,
+                      ease: "elastic.out(1,0.4)",
+                    });
+                    gsap.to(e.currentTarget.querySelector(".about-icon-wrap"), {
+                      backgroundColor: "rgba(199,107,74,0.10)",
+                      duration: 0.3,
+                    });
+                  }}
+                >
+                  <div className="about-icon-wrap w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                     <item.icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{item.title}</h3>

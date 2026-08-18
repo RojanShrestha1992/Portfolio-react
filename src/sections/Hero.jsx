@@ -7,6 +7,7 @@ import {
   Download,
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { MagneticButton } from "@/components/MagneticButton";
 // import pfp from "/img/profile-photo-2.png";
 import pfp from "/img/profile.png";
 import { useRef } from "react";
@@ -101,6 +102,38 @@ export const Hero = () => {
           scrub: true,
         },
       });
+
+      // --- depth layer parallax (decorative shapes at different speeds) ---
+      gsap.to(".hero-depth-1", {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+      gsap.to(".hero-depth-2", {
+        yPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+      gsap.to(".hero-depth-3", {
+        yPercent: -70,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     },
     { scope: sectionRef },
   );
@@ -119,6 +152,13 @@ export const Hero = () => {
             "radial-gradient(circle at 15% 15%, rgba(199,107,74,0.10), transparent 32%), radial-gradient(circle at 85% 10%, rgba(217,154,61,0.08), transparent 28%), var(--color-background)",
         }}
       />
+
+      {/* --- depth layers (different parallax speeds for dimension) --- */}
+      <div className="hero-depth-1 absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-primary/4 blur-3xl pointer-events-none" />
+      <div className="hero-depth-2 absolute top-[20%] right-[8%] w-48 h-48 rounded-full bg-highlight/6 blur-2xl pointer-events-none" />
+      <div className="hero-depth-3 absolute bottom-[15%] left-[40%] w-56 h-56 rounded-full bg-primary/3 blur-3xl pointer-events-none" />
+      <div className="hero-depth-2 absolute top-[60%] left-[2%] w-32 h-32 rounded-full bg-sage/5 blur-2xl pointer-events-none" />
+      <div className="hero-depth-3 absolute top-[8%] right-[25%] w-40 h-40 rounded-full bg-highlight/4 blur-3xl pointer-events-none" />
 
       {/* content  */}
       <div className="container mx-auto px-6 pt-20 pb-12 relative z-10">
@@ -153,23 +193,27 @@ export const Hero = () => {
             </div>
             {/* cta  */}
             <div className="hero-cta flex flex-wrap gap-4">
-              <a href="#contact">
-                <Button size="lg">
-                  Contact Me <ArrowRight className="w-5 h-5" />
-                </Button>
-              </a>
+              <MagneticButton>
+                <a href="#contact">
+                  <Button size="lg">
+                    Contact Me <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </a>
+              </MagneticButton>
 
               {/* animated svg btn */}
-              <a
-                href="/cv/Rojan_Shrestha_CV.pdf"
-                download="Rojan_Shrestha_CV.pdf"
-                className="inline-flex"
-              >
-                <AnimatedBorderButton>
-                  <Download className="w-5 h-5" />
-                  Download CV
-                </AnimatedBorderButton>
-              </a>
+              <MagneticButton>
+                <a
+                  href="/cv/Rojan_Shrestha_CV.pdf"
+                  download="Rojan_Shrestha_CV.pdf"
+                  className="inline-flex"
+                >
+                  <AnimatedBorderButton>
+                    <Download className="w-5 h-5" />
+                    Download CV
+                  </AnimatedBorderButton>
+                </a>
+              </MagneticButton>
             </div>
 
             {/* social  */}
@@ -186,15 +230,16 @@ export const Hero = () => {
                   href: "https://www.instagram.com/row.jann/",
                 },
               ].map((social, idx) => (
-                <a
-                  target="_blank"
-                  key={idx}
-                  href={social.href}
-                  aria-label={social.icon.name}
-                  className="p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
+                <MagneticButton key={idx}>
+                  <a
+                    target="_blank"
+                    href={social.href}
+                    aria-label={social.icon.name}
+                    className="p-2.5 rounded-full border border-[#e7cfc4] bg-surface text-muted-foreground hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                </MagneticButton>
               ))}
             </div>
           </div>

@@ -29,6 +29,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Hide the native scrollbar — the ScrollProgress bar replaces it */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  html::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
   }
   button {
     cursor: pointer;

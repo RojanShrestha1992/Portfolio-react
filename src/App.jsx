@@ -9,10 +9,12 @@ import { Education } from "./sections/Education";
 import { BackToTop } from "./components/BackToTop";
 import { Reveal } from "./components/Reveal";
 import { ScrollProgress } from "./components/ScrollProgress";
+import { Loader } from "./components/Loader";
 
 function App() {
   return (
     <>
+      <Loader />
       <div className="min-h-screen overflow-x-clip">
         <Navbar />
         <main>

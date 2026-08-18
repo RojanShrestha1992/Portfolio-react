@@ -18,11 +18,12 @@ export const Reveal = ({ children, delay = 0, className = "" }) => {
 
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 26 },
+        { clipPath: "inset(100% 0% 0% 0%)", opacity: 0, scale: 0.97 },
         {
+          clipPath: "inset(0% 0% 0% 0%)",
           opacity: 1,
-          y: 0,
-          duration: 0.8,
+          scale: 1,
+          duration: 0.9,
           delay: delay / 1000,
           ease: "power3.out",
           scrollTrigger: { trigger: ref.current, start: "top 88%" },

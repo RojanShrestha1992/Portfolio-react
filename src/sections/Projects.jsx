@@ -1,5 +1,6 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { BlurredImage } from "@/components/BlurredImage";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -156,13 +157,35 @@ export const Projects = () => {
               <div
                 key={idx}
                 className="project-card group card card-hover rounded-2xl overflow-hidden"
+                style={{ perspective: 1000 }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = (e.clientX - rect.left) / rect.width - 0.5;
+                  const y = (e.clientY - rect.top) / rect.height - 0.5;
+                  gsap.to(card, {
+                    rotateY: x * 8,
+                    rotateX: -y * 8,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    transformPerspective: 1000,
+                  });
+                }}
+                onMouseLeave={(e) => {
+                  gsap.to(e.currentTarget, {
+                    rotateY: 0,
+                    rotateX: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.5)",
+                  });
+                }}
               >
                 {/* image */}
                 <div className="project-img-wrap relative overflow-hidden aspect-video">
-                  <img
+                  <BlurredImage
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:brightness-110 transition-[filter] duration-500"
+                    className="w-full h-full group-hover:brightness-110 transition-[filter] duration-500"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-surface/90 via-surface/30 to-transparent" />
 
